@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<package format="2">
+  <name>unitree_legged_sdk</name>
+  <version>0.0.0</version>
+  <description>The unitree_legged_sdk package.</description>
+  <maintainer email="laikago@unitree.cc">unitree</maintainer>
+  <license>TODO</license>
+  
+  <buildtool_depend>catkin</buildtool_depend>
+</package>

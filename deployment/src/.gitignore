@@ -1,0 +1,7 @@
+build
+
+*.o
+.vscode
+.clang-format
+data
+*.csv
