@@ -8,6 +8,112 @@ Official Implementation for [Agile But Safe: Learning Collision-Free High-Speed 
   <img src="images/Youtube-Cover[2M].png" width="80%"/>
 </p>
 
+This codebase is under [CC BY-NC 4.0 license](https://creativecommons.org/licenses/by-nc/4.0/deed.en), with inherited license in [Legged Gym](training/legged_gym) and [rsl rl](training/rsl_rl) from *ETH Zurich, Nikita Rudin* and *NVIDIA CORPORATION & AFFILIATES*. You may not use the material for commercial purposes, e.g., to make demos to advertise your commercial products.
+
+Please read through the whole README.md before cloning the repo.
+
+## Training in Simulation
+
+### Pipeline to install and train ABS
+
+**Note**: Before running our code, it's highly recommended to first play with [RSL's Legged Gym version](https://github.com/leggedrobotics/legged_gym) to get a basic understanding of the Isaac-LeggedGym-RslRL framework.
+   <!-- <br/><br/> -->
+
+1. create environment, install torch
+
+   ```text
+   conda create -n xxx python=3.8  # or use virtual environment/docker
+   
+   pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116  
+   # used version during this work: torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2
+   # for older cuda ver:
+   pip3 install torch==1.10.0+cu113 torchvision==0.11.1+cu113 torchaudio==0.10.0+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
+   ```
+
+   
+
+2. install isaac gym preview 4 release https://developer.nvidia.com/isaac-gym
+
+   unzip files to a folder, then install with pip:
+
+   `cd isaacgym/python && pip install -e .`
+
+   check it is correctly installed by playing: 
+
+   ```cmd
+   cd examples && python 1080_balls_of_solitude.py
+   ```
+
+   
+
+3. clone this codebase and install our `rsl_rl` in the training folder
+
+   ```cmd
+   pip install -e rsl_rl
+   ```
+
+
+
+4. install our `legged_gym`
+
+   ```cmd
+   pip install -e legged_gym
+   ```
+
+   Ensure you have installed the following packages:
+    + pip install numpy==1.20 (must < 1.24)
+    + pip install tensorboard
+    + pip install setuptools==59.5.0
+
+5. try training.
+
+   can use "--headless" to disable gui, press "v" to pause/resume gui play.
+
+   for go1, in `legged_gym/legged_gym`,
+    ```text
+   # agile policy
+   python scripts/train.py --task=go1_pos_rough --max_iterations=4000 
+   
+   # agile policy, lagrangian ver
+   python scripts/train.py --task=go1_pos_rough_ppo_lagrangian --max_iterations=4000
+   
+   # recovery policy
+   python scripts/train.py --task=go1_rec_rough --max_iterations=1000
+   ```
+
+   
+6. play the trained policy
+
+   ```cmd
+   python scripts/play.py --task=go1_pos_rough
+   python scripts/play.py --task=go1_rec_rough
+   ```
+
+7. Use the testbed, and train/test Reach-Avoid network:
+
+   ```text
+   # try testbed
+   python scripts/testbed.py --task=go1_pos_rough [--load_run=xxx] --num_envs=1
+
+   # train RA (be patient it will take time to converge) 
+   # make sure you have at least exported one policy by play.py so the exported folder exists
+   python scripts/testbed.py --task=go1_pos_rough --num_envs=1000 --headless --trainRA
+   
+   # test RA (only when you have trained one RA)
+   python scripts/testbed.py --task=go1_pos_rough --num_envs=1 --testRA
+   
+   # evaluate
+   python scripts/testbed.py --task=go1_pos_rough --num_envs=1000 --headless [--load_run=xxx] [--testRA]
+   ```
+
+8. Sample Dataset for ray-prediction network training
+   ```cmd
+   python scripts/camrec.py --task=go1_pos_rough --num_envs=3
+   ```
+   + Tips 1: You can edit the `shift` value in Line 93 and the `log_root` in Line 87 to collect different dataset files in parallel (so you can merge them by simply moving the files), and manually change the obstacles in `env_cfg.asset.object_files` in Line 63.
+   + Tips 2: After collecting the data, there's a template code in [`train_depth_resnet.py`](training/legged_gym/legged_gym/scripts/train_depth_resnet.py) to train the ray-prediction network, but using what you like for training CV models is highly encouraged!
+   + Tips 3: You may change camera configs of resolution, position, FOV, and depth range in the [config file](training/legged_gym/legged_gym/envs/go1/go1_pos_config.py) Line 151.
+
 
 ## Hardware Deployment 
 ### System overview
@@ -59,8 +165,40 @@ Official Implementation for [Agile But Safe: Learning Collision-Free High-Speed 
 
 
 
-## TODO:
+## Troubleshooting:
+### Contact
++ Deployment and Ray-Prediction: Tairan He, tairanh@andrew.cmu.edu
++ Policy Learning in Sim: Chong Zhang, chozhang@ethz.ch
++ PPO-Lagrangian Implementation: Wenli Xiao, randyxiao64@gmail.com
 
-- [ ] Upload Sim Training Code
-- [x] Upload Deployment Code
+### Issues
+You can create an issue if you meet any bugs, except:
++ If you cannot run the [vanilla RSL's Legged Gym](https://github.com/leggedrobotics/legged_gym), it is expected that you first go to the vanilla Legged Gym repo for help.
++ There can be CUDA-related errors when there are too many parallel environments on certain PC+GPU+driver combination: we cannot solve thiss, you can try to reduce num_envs.
++ Our codebase is only for our hardware system showcased above. We are happy to make it serve as a reference for the community, but we won't tune it for your own robots.
+
+## Credit
+If our work does help you, please consider citing us and the following works:
+```bibtex
+@inproceedings{AgileButSafe,
+  author    = {He, Tairan and Zhang, Chong and Xiao, Wenli and He, Guanqi and Liu, Changliu and Shi, Guanya},
+  title     = {Agile But Safe: Learning Collision-Free High-Speed Legged Locomotion},
+  booktitle = {arXiv},
+  year      = {2024},
+}
+```
+We used codes in [Legged Gym](training/legged_gym) and [rsl rl](training/rsl_rl), based on the paper:
+  + Rudin, Nikita, et al. "Learning to walk in minutes using massively parallel deep reinforcement learning." CORL 2022.
+
+Previsou works that heavily inspired the policy training designs:
+ + Rudin, Nikita, et al. "Advanced skills by learning locomotion and local navigation end-to-end." 2022 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS). IEEE, 2022.
+ + Zhang, Chong, et al. "Learning Agile Locomotion on Risky Terrains." arXiv preprint arXiv:2311.10484 (2023).
+ + Zhang, Chong, et al. "Resilient Legged Local Navigation: Learning to Traverse with Compromised Perception End-to-End." ICRA 2024.
+
+Previsou works that heavily inspired the RA value design:
++ Hsu, Kai-Chieh, et al. "Safety and liveness guarantees through reach-avoid reinforcement learning." RSS 2021.
+
+Previsou works that heavily inspired the perception design:
++ Hoeller, David, et al. "Anymal parkour: Learning agile navigation for quadrupedal robots." Science Robotics 9.88 (2024): eadi7566.
++ Acero, F., K. Yuan, and Z. Li. "Learning Perceptual Locomotion on Uneven Terrains using Sparse Visual Observations." IEEE Robotics and Automation Letters 7.4 (2022): 8611-8618.
 
