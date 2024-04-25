@@ -14,7 +14,7 @@ Please read through the whole README.md before cloning the repo.
 
 ## Training in Simulation
 
-### Pipeline to install and train ABS
+### Pipeline to Install and Train ABS
 
 **Note**: Before running our code, it's highly recommended to first play with [RSL's Legged Gym version](https://github.com/leggedrobotics/legged_gym) to get a basic understanding of the Isaac-LeggedGym-RslRL framework.
    <!-- <br/><br/> -->
@@ -116,7 +116,7 @@ Please read through the whole README.md before cloning the repo.
 
 
 ## Hardware Deployment 
-### System overview
+### System Overview
 <p align="center">
   <img src="images/hardware.png" width="80%"/>
 </p>
