@@ -10,6 +10,8 @@ Official Implementation for [Agile But Safe: Learning Collision-Free High-Speed 
 
 This codebase is under [CC BY-NC 4.0 license](https://creativecommons.org/licenses/by-nc/4.0/deed.en), with inherited license in [Legged Gym](training/legged_gym) and [rsl rl](training/rsl_rl) from *ETH Zurich, Nikita Rudin* and *NVIDIA CORPORATION & AFFILIATES*. You may not use the material for commercial purposes, e.g., to make demos to advertise your commercial products.
 
+Please read through the whole README.md before cloning the repo.
+
 ## Training in Simulation
 
 ### Pipeline to install and train ABS
