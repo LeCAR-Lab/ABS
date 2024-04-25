@@ -172,8 +172,8 @@ This codebase is under [CC BY-NC 4.0 license](https://creativecommons.org/licens
 ### Issues
 You can create an issue if you meet any bugs except:
 + If you cannot run the [vanilla RSL's Legged Gym](https://github.com/leggedrobotics/legged_gym), it is expected that you first go to the vanilla Legged Gym repo for help.
-+ There can be CUDA-related errors when there are too many parallel environments on certain PC+GPU+driver combination: we cannot solve this, you can try to reduce num_envs
-+ Our codebase is only for our system showcased in the 
++ There can be CUDA-related errors when there are too many parallel environments on certain PC+GPU+driver combination: we cannot solve thiss, you can try to reduce num_envs
++ Our codebase is only for our hardware system showcased above. We won't tune it for your own robots.
 
 ## Credit
 If our work does help you, please consider citing us and the following works:
