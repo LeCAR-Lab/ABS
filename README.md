@@ -180,7 +180,7 @@ You can create an issue if you meet any bugs, except:
 ## Credit
 If our work does help you, please consider citing us and the following works:
 ```bibtex
-@inproceedings{he2024agile,
+@inproceedings{AgileButSafe,
   author    = {He, Tairan and Zhang, Chong and Xiao, Wenli and He, Guanqi and Liu, Changliu and Shi, Guanya},
   title     = {Agile But Safe: Learning Collision-Free High-Speed Legged Locomotion},
   booktitle = {arXiv},
