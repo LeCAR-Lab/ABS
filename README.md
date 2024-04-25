@@ -8,7 +8,7 @@ Official Implementation for [Agile But Safe: Learning Collision-Free High-Speed 
   <img src="images/Youtube-Cover[2M].png" width="80%"/>
 </p>
 
-This codebase is under [CC BY-NC 4.0 license](https://creativecommons.org/licenses/by-nc/4.0/deed.en), with inherited license in [Legged Gym](training/legged_gym) and [rsl rl](training/rsl_rl) from *ETH Zurich, Nikita Rudin* and *NVIDIA CORPORATION & AFFILIATES*. You may not use the material for commercial purposes, e.g., to make demos to advertise your commercial products.
+This codebase is under [CC BY-NC 4.0 license](https://creativecommons.org/licenses/by-nc/4.0/deed.en), with inherited license in [Legged Gym](training/legged_gym) and [RSL RL](training/rsl_rl) from *ETH Zurich, Nikita Rudin* and *NVIDIA CORPORATION & AFFILIATES*. You may not use the material for commercial purposes, e.g., to make demos to advertise your commercial products.
 
 Please read through the whole README.md before cloning the repo.
 
@@ -187,8 +187,8 @@ If our work does help you, please consider citing us and the following works:
   year      = {2024},
 }
 ```
-We used codes in [Legged Gym](training/legged_gym) and [rsl rl](training/rsl_rl), based on the paper:
-  + Rudin, Nikita, et al. "Learning to walk in minutes using massively parallel deep reinforcement learning." CORL 2022.
+We used codes in [Legged Gym](training/legged_gym) and [RSL RL](training/rsl_rl), based on the paper:
+  + Rudin, Nikita, et al. "Learning to walk in minutes using massively parallel deep reinforcement learning." CoRL 2022.
 
 Previsou works that heavily inspired the policy training designs:
  + Rudin, Nikita, et al. "Advanced skills by learning locomotion and local navigation end-to-end." 2022 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS). IEEE, 2022.
