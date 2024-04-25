@@ -19,7 +19,7 @@ Please read through the whole README.md before cloning the repo.
 **Note**: Before running our code, it's highly recommended to first play with [RSL's Legged Gym version](https://github.com/leggedrobotics/legged_gym) to get a basic understanding of the Isaac-LeggedGym-RslRL framework.
    <!-- <br/><br/> -->
 
-1. create environment, install torch
+1. Create environment and install torch
 
    ```text
    conda create -n xxx python=3.8  # or use virtual environment/docker
@@ -32,7 +32,7 @@ Please read through the whole README.md before cloning the repo.
 
    
 
-2. install isaac gym preview 4 release https://developer.nvidia.com/isaac-gym
+2. Install Isaac Gym preview 4 release https://developer.nvidia.com/isaac-gym
 
    unzip files to a folder, then install with pip:
 
@@ -46,7 +46,7 @@ Please read through the whole README.md before cloning the repo.
 
    
 
-3. clone this codebase and install our `rsl_rl` in the training folder
+3. Clone this codebase and install our `rsl_rl` in the training folder
 
    ```cmd
    pip install -e rsl_rl
@@ -54,7 +54,7 @@ Please read through the whole README.md before cloning the repo.
 
 
 
-4. install our `legged_gym`
+4. Install our `legged_gym`
 
    ```cmd
    pip install -e legged_gym
@@ -65,7 +65,7 @@ Please read through the whole README.md before cloning the repo.
     + pip install tensorboard
     + pip install setuptools==59.5.0
 
-5. try training.
+5. Try training.
 
    can use "--headless" to disable gui, press "v" to pause/resume gui play.
 
@@ -82,7 +82,7 @@ Please read through the whole README.md before cloning the repo.
    ```
 
    
-6. play the trained policy
+6. Play the trained policy
 
    ```cmd
    python scripts/play.py --task=go1_pos_rough
@@ -106,7 +106,7 @@ Please read through the whole README.md before cloning the repo.
    python scripts/testbed.py --task=go1_pos_rough --num_envs=1000 --headless [--load_run=xxx] [--testRA]
    ```
 
-8. Sample Dataset for ray-prediction network training
+8. Sample dataset for ray-prediction network training
    ```cmd
    python scripts/camrec.py --task=go1_pos_rough --num_envs=3
    ```
