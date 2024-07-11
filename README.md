@@ -63,7 +63,7 @@ Please read through the whole README.md before cloning the repo.
    ```
 
    Ensure you have installed the following packages:
-    + pip install numpy==1.20 (must < 1.24)
+    + pip install numpy==1.21 (must < 1.24, >1.20)
     + pip install tensorboard
     + pip install setuptools==59.5.0
 
